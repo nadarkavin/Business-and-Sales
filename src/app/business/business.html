@@ -1,0 +1,165 @@
+<!-- =========================
+     DASHBOARD SUMMARY
+========================= -->
+<div class="form-grid" style="margin-bottom: 20px;">
+  <div class="card">
+    <h3>Total Products</h3>
+    <h2>{{ totalProducts }}</h2>
+  </div>
+
+  <div class="card">
+    <h3>Total Sales</h3>
+    <h2>₹ {{ totalSales | number:'1.2-2' }}</h2>
+  </div>
+
+  <div class="card">
+    <h3>Total Profit</h3>
+    <h2>₹ {{ totalProfit | number:'1.2-2' }}</h2>
+  </div>
+
+  <div class="card">
+    <h3>Total GST</h3>
+    <h2>₹ {{ totalGST | number:'1.2-2' }}</h2>
+  </div>
+</div>
+
+<!-- =========================
+     SEARCH & FILTER (NEW)
+========================= -->
+<div class="card">
+  <h2>Search & Filter</h2>
+
+  <div class="form-grid">
+    <input
+      placeholder="Search by Product Name or Brand"
+      [(ngModel)]="searchText">
+
+    <input
+      type="number"
+      placeholder="Minimum Selling Price"
+      [(ngModel)]="minPrice">
+  </div>
+</div>
+
+<!-- =========================
+     PERSONAL / BUSINESS INFO
+========================= -->
+<div class="card">
+  <h2>Personal / Business Info</h2>
+
+  <div class="form-grid">
+    <input placeholder="Full Name"
+           [(ngModel)]="personal.fullName"
+           (ngModelChange)="savePersonalInfo()">
+
+    <input placeholder="Email"
+           [(ngModel)]="personal.email"
+           (ngModelChange)="savePersonalInfo()">
+
+    <input placeholder="Phone"
+           [(ngModel)]="personal.phone"
+           (ngModelChange)="savePersonalInfo()">
+
+    <input placeholder="Business Name"
+           [(ngModel)]="personal.businessName"
+           (ngModelChange)="savePersonalInfo()">
+
+    <input placeholder="Location"
+           [(ngModel)]="personal.location"
+           (ngModelChange)="savePersonalInfo()">
+  </div>
+</div>
+
+<!-- =========================
+     PRODUCT ENTRY
+========================= -->
+<div class="card">
+  <h2>Business & Sales</h2>
+
+  <div class="form-grid">
+    <input placeholder="Product ID"
+           [(ngModel)]="product.productId">
+
+    <input placeholder="Product Name"
+           [(ngModel)]="product.productName">
+
+    <input placeholder="Brand"
+           [(ngModel)]="product.brand">
+
+    <input type="number"
+           placeholder="Cost Price"
+           [(ngModel)]="product.costPrice">
+
+    <input type="number"
+           placeholder="Selling Price"
+           [(ngModel)]="product.sellingPrice">
+
+    <input type="number"
+           placeholder="GST %"
+           [(ngModel)]="product.gstRate">
+  </div>
+
+  <!-- ACTION BUTTONS -->
+  <div style="margin-top: 10px;">
+    <button class="ripple"
+            (click)="saveProduct()">
+      {{ editIndex === null ? 'Add Sale' : 'Update Sale' }}
+    </button>
+
+    <button class="outline"
+            *ngIf="editIndex !== null"
+            (click)="resetForm()">
+      Cancel
+    </button>
+  </div>
+</div>
+
+<!-- =========================
+     EXPORT BUTTON
+========================= -->
+<button class="ripple"
+        style="margin-top: 10px;"
+        *ngIf="products.length"
+        (click)="exportToCSV()">
+  Export Sales to CSV
+</button>
+
+<!-- =========================
+     SALES TABLE
+========================= -->
+<table *ngIf="filteredProducts.length" class="card">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Brand</th>
+      <th>Profit</th>
+      <th>GST</th>
+      <th>Final Price</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let p of filteredProducts; let i = index">
+      <td>{{ p.productId }}</td>
+      <td>{{ p.productName }}</td>
+      <td>{{ p.brand }}</td>
+      <td>₹ {{ p.profit | number:'1.2-2' }}</td>
+      <td>₹ {{ p.gstAmount | number:'1.2-2' }}</td>
+      <td>₹ {{ p.finalPrice | number:'1.2-2' }}</td>
+      <td>
+        <button class="ripple" (click)="editProduct(i)">Edit</button>
+        <button class="danger ripple" (click)="deleteProduct(i)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- =========================
+     EMPTY STATE
+========================= -->
+<div *ngIf="!filteredProducts.length" class="card" style="text-align: center;">
+  <p>No matching sales found 🔍</p>
+  <p>Try changing search or filter</p>
+</div>

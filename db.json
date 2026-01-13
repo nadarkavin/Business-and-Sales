@@ -1,0 +1,59 @@
+{
+  "personalInfo": {
+    "fullName": "rahul",
+    "email": "rahulry@gmail.com",
+    "phone": "9967999999",
+    "businessName": "kidney",
+    "location": "mumbai"
+  },
+  "products": [
+    {
+      "id": "cf96",
+      "productId": "1",
+      "productName": "bike",
+      "brand": "hero honda",
+      "costPrice": 1000000,
+      "sellingPrice": 80000,
+      "gstRate": 15,
+      "profit": -920000,
+      "gstAmount": 12000,
+      "finalPrice": 92000
+    },
+    {
+      "id": "7001",
+      "productId": "1",
+      "productName": "kidney",
+      "brand": "rahul premium brand kidney",
+      "costPrice": 400000,
+      "sellingPrice": 350000,
+      "gstRate": 15,
+      "profit": -50000,
+      "gstAmount": 52500,
+      "finalPrice": 402500
+    },
+    {
+      "id": "0e9f",
+      "productId": "2",
+      "productName": "hero honda",
+      "brand": "wq",
+      "costPrice": 12,
+      "sellingPrice": 3,
+      "gstRate": 4,
+      "profit": -9,
+      "gstAmount": 0.12,
+      "finalPrice": 3.12
+    },
+    {
+      "id": "b535",
+      "productId": "1",
+      "productName": "hero honda",
+      "brand": "bmw",
+      "costPrice": 143434343,
+      "sellingPrice": 2323232,
+      "gstRate": 15,
+      "profit": -141111111,
+      "gstAmount": 348484.8,
+      "finalPrice": 2671716.8
+    }
+  ]
+}
